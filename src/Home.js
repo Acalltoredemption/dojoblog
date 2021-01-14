@@ -5,6 +5,7 @@ import BlogList from './BlogList';
 const  Home = () => {
 
 const [blogs, setBlogs] = useState(null);
+const [ispending, setIsPending] = useState(true);
 
 
 useEffect(() => {
@@ -15,12 +16,14 @@ useEffect(() => {
     .then((data) => {
         console.log(data);
         setBlogs(data);
+        setIsPending(false);
     })
 
 }, []);
 
     return ( 
         <div className="home">
+            {ispending && <div>Loading...</div>}
              {blogs && <BlogList blogs={blogs} title="All Blogs" />} 
          
         </div>
